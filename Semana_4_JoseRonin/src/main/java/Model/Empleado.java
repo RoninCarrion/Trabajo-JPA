@@ -2,13 +2,13 @@ package Model;
 import javax.persistence.*;
 @Entity
 public class Empleado {
-
+@Column(length = 64, nullable = false)
 private String nombre;
-
+    @Column(length = 64, nullable = false)
 private String apellido;
-@Id
+@Id @Column(length = 11, nullable = false)
 private String cedula;
-
+    @Column(length = 128, nullable = false)
 private String email;
 
     public Empleado() {
