@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "EMPLEADO_PA")
 public class Empleado {
 @Column(length = 64, nullable = false)
 private String nombre;

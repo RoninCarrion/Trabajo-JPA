@@ -11,7 +11,7 @@ public class Equipo {
     @JoinColumn(name = "cedula")
     private Empleado empleado;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "EMPLEADO_CEDULA")
     private Proyecto proyecto;
 
     @Column(length = 1, nullable = false, columnDefinition = "String default M")

@@ -1,5 +1,6 @@
 package controller;
 
+import Model.Ctl;
 import Model.Empleado;
 import Model.Proyecto;
 
@@ -10,6 +11,16 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class Controlador {
+    public static void main(String[] args) throws Exception{
+
+        try(Ctl ctl = Ctl.getInstance("pu-pa")) {
+
+            addData();
+            presentarData();
+
+        }
+
+    }
     private static EntityManager em = null;
 
     public Controlador() {
@@ -52,8 +63,32 @@ public class Controlador {
         return true;
     }
 
+    private static void presentarData() {
+        TypedQuery<Proyecto> qryProyecto = em.createQuery("SELECT c FROM Proyecto c", Proyecto.class);
+        for(var pj : qryProyecto.getResultList()) {
+            System.out.println("====================================================================================");
+            System.out.printf("Proyecto: %s%n", pj.getNombre());
+            System.out.printf("Creditos: %d%n", pj.getPresupuesto());
+            System.out.printf("%s\t%s\t%s\t%s\t%s%n",
+                    "Cedula",
+                    "Apellidos",
+                    "Nombres",
+                    "E-Mail",
+                    "Rol");
+            System.out.println("------------------------------------------------------------------------------------");
+            for(var et: pj.getEquipos1()) {
+                System.out.printf("%s\t%s\t%s\t%s\t%%n",
+                        et.getEmpleado().getCedula(),
+                        et.getEmpleado().getApellido(),
+                        et.getEmpleado().getNombre(),
+                        et.getEmpleado().getEmail(),
+                        et.getEmpleado());
+            }
+        }
+    }
 
-    public void close() {
+
+    public void close() throws Exception {
         em.close();
     }
 }
