@@ -34,6 +34,7 @@ public class Controlador {
     }
 
     public boolean addEmpleado(Empleado empleado) {
+
         em.getTransaction().begin();
         em.persist(empleado);
         em.flush();

@@ -1,5 +1,8 @@
 package Model;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Empleado {
 @Column(length = 64, nullable = false)
@@ -11,7 +14,11 @@ private String cedula;
     @Column(length = 128, nullable = false)
 private String email;
 
+    @OneToMany(mappedBy = "empleado")
+    private List<Equipo>equipos;
+
     public Empleado() {
+        equipos =new ArrayList<>();
     }
 
     public Empleado(String nombre, String apellido, String cedula, String email) {
@@ -51,6 +58,13 @@ private String email;
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Equipo> getEquipos() {
+        if (equipos == null){
+            equipos =new ArrayList<>();
+        }
+        return equipos;
     }
 }
 

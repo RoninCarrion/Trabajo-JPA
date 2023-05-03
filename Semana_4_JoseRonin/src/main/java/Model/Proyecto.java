@@ -2,6 +2,9 @@ package Model;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Proyecto {
     @Id
@@ -12,7 +15,11 @@ public class Proyecto {
     @Column(nullable = false, columnDefinition = "Double default 1000.00")
     private Double presupuesto;
 
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL)
+    public List<Equipo> equipos1;
+
     public Proyecto() {
+        equipos1 = new ArrayList<>();
     }
 
     public Proyecto(Integer id, String nombre, Double presupuesto) {
