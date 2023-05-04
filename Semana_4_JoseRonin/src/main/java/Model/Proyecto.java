@@ -23,8 +23,8 @@ public class Proyecto {
         equipos1 = new ArrayList<>();
     }
 
-    public Proyecto(Integer id, String nombre, Double presupuesto) {
-        this.id = id;
+    public Proyecto(String nombre, Double presupuesto) {
+        this();
         this.nombre = nombre;
         this.presupuesto = presupuesto;
     }

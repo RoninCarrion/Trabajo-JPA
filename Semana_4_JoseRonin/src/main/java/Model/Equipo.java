@@ -3,6 +3,7 @@ package Model;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
+@Table(name = "EQUIPO")
 public class Equipo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,19 +21,13 @@ public class Equipo {
     @Column(name = "FECHA_INGRESO", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Date fechaIngreso;
 
-    public Equipo() {;
-    }
-    public Equipo(String rol, Date fechaIngreso ) {
-        this.rol = rol;
-        this.fechaIngreso = fechaIngreso;
-    }
+    public Equipo() {
 
-    public Equipo(Long id, Empleado empleado, Proyecto proyecto, String rol, Date fechaIngreso) {
-        Id = id;
-        this.empleado = empleado;
-        this.proyecto = proyecto;
+    }
+    public Equipo(String rol, Empleado empleado, Proyecto proyecto) {
         this.rol = rol;
-        this.fechaIngreso = fechaIngreso;
+        this.proyecto = proyecto;
+        this.empleado = empleado;
     }
 
     public String getRol() {
@@ -55,5 +50,13 @@ public class Equipo {
     }
     public Proyecto getProyecto() {
         return proyecto;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public void setProyecto(Proyecto proyecto) {
+        this.proyecto = proyecto;
     }
 }

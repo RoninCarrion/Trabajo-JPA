@@ -28,6 +28,7 @@ public class Ctl implements AutoCloseable{
     }
 
     public EntityManager getEm() {
+
         return em;
     }
 
